@@ -1,7 +1,6 @@
 import fs from 'fs';
 import Jimp = require('jimp');
 import * as axios from 'axios';
-import * as request from 'request';
 
 // filterImageFromURL
 // helper function to download, filter, and save the filtered image locally
@@ -83,7 +82,7 @@ export async function isImageURL(url: string) {
         }
 
         return false;
-    } catch (error: any) {
+    } catch (error) {
         return false;
     }
 }
