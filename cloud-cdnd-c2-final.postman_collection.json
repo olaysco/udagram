@@ -12,7 +12,9 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							""
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200)\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -24,7 +26,12 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "SOMEGIBBERISH",
+							"value": "{{AUTH_TOKEN}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{AUTH_TOKEN}}",
 							"type": "string"
 						}
 					]
@@ -32,9 +39,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{host}}/filteredimage?image_url=https://www.clipart-graphics.net/_data/i/upload/2017/04/07/20170407140047-6e657d86-me.png",
+					"raw": "{{EB_URL}}/filteredimage?image_url=https://www.clipart-graphics.net/_data/i/upload/2017/04/07/20170407140047-6e657d86-me.png",
 					"host": [
-						"{{host}}"
+						"{{EB_URL}}"
 					],
 					"path": [
 						"filteredimage"
@@ -109,8 +116,8 @@
 	],
 	"variable": [
 		{
-			"key": "host",
-			"value": "http://localhost:8082"
+			"key": "EB_URL",
+			"value": "http://udagram-ola-filter-service-dev.us-west-2.elasticbeanstalk.com"
 		},
 		{
 			"key": "AUTH_TOKEN",
