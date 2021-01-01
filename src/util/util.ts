@@ -58,3 +58,33 @@ export function empty(val: any) {
     
     return false;
 }
+
+/**
+ * checks if a url is a valid image url
+ * 
+ * @param url
+ * @returns Promise<boolean|buffer>
+ */
+export async function isImageURL(url: string) {
+    if (empty(url)) {
+        return false;
+    }
+    try {
+        const resp: axios.AxiosResponse = await axios.default.get(url, { responseType: "arraybuffer" });
+        const headers = resp.headers;
+        if (!(resp.status >= 200 && resp.status < 300)
+            || !headers['content-type']
+        ) {
+            return false;
+        }
+        
+        if (headers['content-type'].search(/^image\//) != -1) {
+            return resp.data;
+        }
+
+        return false;
+    } catch (error: any) {
+        console.log(error);
+        return false;
+    }
+}
