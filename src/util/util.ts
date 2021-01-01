@@ -84,7 +84,6 @@ export async function isImageURL(url: string) {
 
         return false;
     } catch (error: any) {
-        console.log(error);
         return false;
     }
 }
