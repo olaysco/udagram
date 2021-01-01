@@ -11,3 +11,7 @@ A basic Ionic client web application which consumes the RestAPI Backend. [Covere
 ## Running Locally
 
 `npm run dev`
+
+## EB URL
+
+`http://udagram-ola-filter-service-dev.us-west-2.elasticbeanstalk.com/`
