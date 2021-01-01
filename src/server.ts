@@ -30,7 +30,26 @@ import {filterImageFromURL, deleteLocalFiles, empty, isImageURL} from './util/ut
 
   /**************************************************************************** */
   app.get("/filteredimage", async (req: Request, res: Response) => {
-    
+    const { image_url } = req.query;
+    if (empty(image_url)) {
+      return res.status(400).send({ 'message': 'image_url is required in the URL query'})
+    }
+   
+    const image = await isImageURL(image_url);
+    if (!image) {
+      return res.status(422).send({ 'message': 'image_url is not a valid image url'})
+    }
+
+    filterImageFromURL(image).then((path: string) => {
+      res.status(200).sendFile(path);
+      res.addListener('finish', () => {
+        deleteLocalFiles([path]);
+      })
+    }).catch((error: any) => {
+      res.status(500).send('A server error occurred')
+    }).finally(() => {
+      res.removeAllListeners('finish')
+    })
   })
   //! END @TODO1
   
