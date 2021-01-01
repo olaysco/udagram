@@ -33,7 +33,7 @@ require('dotenv').config();
       res.addListener('finish', () => {
         deleteLocalFiles([path]);
       })
-    }).catch((error: any) => {
+    }).catch((error) => {
       res.status(500).send('A server error occurred')
     }).finally(() => {
       res.removeAllListeners('finish')
