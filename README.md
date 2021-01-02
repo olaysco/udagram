@@ -15,3 +15,5 @@ A basic Ionic client web application which consumes the RestAPI Backend. [Covere
 ## EB URL
 
 `http://udagram-ola-filter-service-dev.us-west-2.elasticbeanstalk.com/`
+
+Authoriztion Bearer Token `SOMEGIBBERISH`
